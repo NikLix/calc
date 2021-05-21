@@ -1,0 +1,100 @@
+<form name="calculator" class="form-inline" th:action="@{/}" method="POST" xmlns:th="http://www.w3.org/1999/xhtml">
+	<table class="center_table"> 
+		<tr>
+			<td >
+				<input class="button" type="button" value="C" name="reset"  onclick="reset_value()"> 
+			</td>
+			<td colspan="4">
+				<input class="result" type="text" name="result" id="result" th:value="${result}" > 
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2"> 
+				<input class="Left_and_Right_operand" type="text"  onkeyup="this.value = this.value.replace(/[^\d]/g ,'');" id="leftOperand" name="leftOperand"  th:value="${leftOperand}" >
+			</td>
+			<td colspan="1"> 
+				<input class="operator" type="text" onkeyup="this.value = this.value.replace(/[^\+|\-|\*|\/]/g ,'');"  id="operator" name="operator"   th:value="${operator}" >
+			</td>
+			<td colspan="2"> 
+				<input class="Left_and_Right_operand" type="text" onkeyup="this.value = this.value.replace(/[^\d]/g ,'');"  id="rightOperand"  name="rightOperand" th:value="${rightOperand}" >
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<input class="button" type="button" value="1" onclick="addNumers(1)">
+			</td>
+			<td>
+				<input class="button" type="button" value="2" onclick="addNumers(2)">
+			</td> 
+			<td>
+				<input class="button" type="button" value="3" onclick="addNumers(3)">
+			</td>
+			<td>
+				<input class="button" type="button" value="0" onclick="addNumers(0)">
+			</td>
+			<td>
+				<input class="button" type="button" value="*" onclick="document.calculator.operator.value='*'">
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<input class="button" type="button" value="4" onclick="addNumers(4)">
+			</td>
+			<td>
+				<input class="button" type="button" value="5" onclick="addNumers(5)">
+			</td>
+			<td>
+				<input class="button" type="button" value="6" onclick="addNumers(6)">
+			</td>
+			<td>
+				<input class="button" type="button" value="+" onclick="document.calculator.operator.value='+'">
+			</td>
+			<td>
+				<input class="button" type="button" value="/" onclick="document.calculator.operator.value='/'">
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<input class="button" type="button" value="7" onclick="addNumers(7)">
+			</td>
+			<td>
+				<input class="button" type="button" value="8" onclick="addNumers(8)">
+			</td>
+			<td>
+				<input class="button" type="button" value="9" onclick="addNumers(9)">
+			</td>
+			<td>
+				<input class="button" type="button" value="-" onclick="document.calculator.operator.value='-'">
+			</td>
+			<td>
+				<input class="button" type="submit" value="=">
+			</td>
+		</tr>
+	
+	</table>
+</form>
+
+<script >
+  // Функция добавляет цифры в левое текстовое поле
+  // А если в текстовом поле выбора операции выбрана операция
+  // То добавляет цифры в правое текстовое поле
+  function addNumers(num) {
+	  var operator = document.calculator.operator.value;
+	  
+	  if (operator == '') {
+		  return document.calculator.leftOperand.value += num;
+	  }
+	  else {
+		  return document.calculator.rightOperand.value += num;
+	  }
+  }
+  // Очищает все текстовые поля
+  function reset_value() {
+		return document.calculator.leftOperand.value = '',
+		document.calculator.rightOperand.value = '',
+		document.calculator.operator.value = '',
+		document.calculator.result.value = '';
+  }
+</script>
+
+
